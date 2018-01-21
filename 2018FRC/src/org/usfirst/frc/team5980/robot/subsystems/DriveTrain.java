@@ -11,10 +11,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	TalonSRX left1 = new TalonSRX(0);
-	TalonSRX left2 = new TalonSRX(1);
-	TalonSRX right1 = new TalonSRX(2);
-	TalonSRX right2 = new TalonSRX(3);
+	TalonSRX left1 = new TalonSRX(1);
+	TalonSRX left2 = new TalonSRX(2);
+	TalonSRX right1 = new TalonSRX(3);
+	TalonSRX right2 = new TalonSRX(4);
+	public DriveTrain() {
+		right1.setInverted(true);
+		right2.setInverted(true);
+	}
+	
 	
 	public void setPower(double leftPower, double rightPower) {
 		left1.set(ControlMode.PercentOutput, leftPower);

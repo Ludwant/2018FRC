@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		//SmartDashboard.putData("Auto mode", m_chooser);
 		
-		sensors.resetSensors();
+		//sensors.resetSensors();
 	}
 
 	/**
