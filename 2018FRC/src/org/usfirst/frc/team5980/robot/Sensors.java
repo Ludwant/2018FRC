@@ -36,7 +36,7 @@ public class Sensors {
 	}
 	
 	public double getLeftEncoder() {
-		return leftEncoder.get() - leftEncoderOffset;
+		return leftEncoder.get();// - leftEncoderOffset;
 	}
 	
 	public double getRightEncoder() {

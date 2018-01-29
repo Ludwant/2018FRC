@@ -87,7 +87,6 @@ public class Robot extends TimedRobot {
 		 //* = new MyAutoCommand(); break; case "Default Auto": default:
 		m_autonomousCommand = new DriveForwardAuto(.5, 500, 0);
 		 
-
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -119,6 +118,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**
