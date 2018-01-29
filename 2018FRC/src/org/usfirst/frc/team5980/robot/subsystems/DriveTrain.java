@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	TalonSRX left1 = new TalonSRX(3);
-	TalonSRX left2 = new TalonSRX(4);
-	TalonSRX right1 = new TalonSRX(1);
-	TalonSRX right2 = new TalonSRX(2);
+	public static TalonSRX left1 = new TalonSRX(3);
+	public static TalonSRX left2 = new TalonSRX(4);
+	public static TalonSRX right1 = new TalonSRX(1);
+	public static TalonSRX right2 = new TalonSRX(5);
 	public DriveTrain() {
 		right1.setInverted(true);
 		right2.setInverted(true);

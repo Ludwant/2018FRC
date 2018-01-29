@@ -36,13 +36,13 @@ public class DriveForwardAuto extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double stopCorrection = stopPID.getCorrection(Robot.sensors.getRightEncoder());
-    	if(stopCorrection >1) stopCorrection = 1;
+    	if(stopCorrection > 1) stopCorrection = 1;
     	double correction = drivePID.getCorrection(Robot.sensors.getYaw());
     	if (speed < maxSpeed) {
     		speed += 0.04;
     	}
-    	Robot.driveTrain.setPower((speed-correction) * stopCorrection, (speed+correction) * stopCorrection);
-    	SmartDashboard.putNumber("Right Encoder: ", Robot.sensors.getRightEncoder());
+    	Robot.driveTrain.setPower((speed-correction), (speed+correction));
+    	SmartDashboard.putNumber("right Power", speed+correction);
     }
 
     // Make this return true when this Command no longer needs to run execute()

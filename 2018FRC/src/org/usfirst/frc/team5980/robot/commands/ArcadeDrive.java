@@ -44,6 +44,7 @@ public class ArcadeDrive extends Command {
     	Robot.driveTrain.setPower(leftPower, rightPower);
     	SmartDashboard.putNumber("left: ", Robot.sensors.getLeftEncoder());
     	SmartDashboard.putNumber("right: ", Robot.sensors.getRightEncoder());
+    	SmartDashboard.putNumber("leftEncoderOffset: ", Robot.sensors.leftEncoderOffset);
     }
 
     // Make this return true when this Command no longer needs to run execute()

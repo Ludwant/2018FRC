@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5980.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team5980.robot.commands.DriveForwardAuto;
+import org.usfirst.frc.team5980.robot.commands.DriveForwardForTime;
 import org.usfirst.frc.team5980.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5980.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5980.robot.subsystems.ExampleSubsystem;
@@ -36,7 +37,7 @@ public class Robot extends TimedRobot {
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -44,11 +45,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		//m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//SmartDashboard.putData("Auto mode", m_chooser);
+		m_chooser.addDefault("DriveForwardAuto", new DriveForwardAuto(.5, 5000, 0));
+		 //chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", m_chooser);
 		
-		//sensors.resetSensors();
+		
 	}
 
 	/**
@@ -79,14 +80,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = m_chooser.getSelected();
 
 		
 		 //* String autoSelected = SmartDashboard.getString("Auto Selector",
 		// * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 //* = new MyAutoCommand(); break; case "Default Auto": default:
-		m_autonomousCommand = new DriveForwardAuto(.5, 500, 0);
-		 
+		//m_autonomousCommand = new DriveForwardAuto(.5, 5000, 0);
+		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -110,6 +111,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		sensors.resetSensors();
 	}
 
 	/**

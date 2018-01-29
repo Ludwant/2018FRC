@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 
 public class Sensors {
+	boolean usingTalons = true;
 	Encoder leftEncoder = new Encoder(0,1);
 	Encoder rightEncoder = new Encoder(2,3);
 	static AHRS navX;
 	public double encoderCountsPerInch = 1;
-	double leftEncoderOffset = 0;
-	double rightEncoderOffset = 0;
+	public double leftEncoderOffset;
+	double rightEncoderOffset;
 	float yawOffset = 0;
 	
 	public void SensorInput() {
@@ -36,17 +37,27 @@ public class Sensors {
 	}
 	
 	public double getLeftEncoder() {
-		return leftEncoder.get();// - leftEncoderOffset;
+		double encoderVal;
+		if (usingTalons) {
+			encoderVal = Robot.driveTrain.left1.getSelectedSensorPosition(0);
+		}
+		else encoderVal = leftEncoder.get();
+		return (encoderVal-leftEncoderOffset); // - leftEncoderOffset;
 	}
 	
 	public double getRightEncoder() {
-		return -(rightEncoder.get()-rightEncoderOffset);
+		double encoderVal;
+		if(usingTalons) {
+			encoderVal = Robot.driveTrain.right1.getSelectedSensorPosition(0);
+		}
+		else encoderVal = rightEncoder.get();
+		return -(encoderVal-rightEncoderOffset);
 	}
 	
 	public void resetSensors() {
 		leftEncoderOffset = leftEncoder.get();
 		rightEncoderOffset = rightEncoder.get();
-		yawOffset = navX.getYaw();
+		//yawOffset = navX.getYaw();
 	}
 	
 }
